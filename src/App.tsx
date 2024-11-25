@@ -3,28 +3,59 @@ import Navbar from "./components/Navbar";
 import Table from "./components/Table";
 
 const App = () => {
+  const showModal = () => {
+    const buyModal: any = document.getElementById("buyModal");
+    if (buyModal) {
+      buyModal.showModal();
+    }
+  };
   return (
     <>
       <Navbar />
-      <div role="tablist" className="tabs tabs-lifted">
-        <input type="radio" name="callTab" className="tab" aria-label="Calls" />
-        <div
-          role="tabpanel"
-          className="tab-content bg-base-100 border-base-300 rounded-box p-6"
-        >
+
+      <div role="tablist" className="tabs tabs-bordered">
+        <input
+          type="radio"
+          name="my_tabs_1"
+          role="tab"
+          className="tab"
+          aria-label="Calls"
+        />
+        <div role="tabpanel" className="tab-content p-10">
           <Table />
         </div>
-        <input type="radio" name="putTab" className="tab" aria-label="Puts" />
-        <div
-          role="tabpanel"
-          className="tab-content bg-base-100 border-base-300 rounded-box p-6"
-        >
-          <Table />
-        </div>
+
+        <input
+          type="radio"
+          name="my_tabs_1"
+          role="tab"
+          className="tab"
+          aria-label="Puts"
+          defaultChecked
+        />
+        <div role="tabpanel" className="tab-content p-10"></div>
       </div>
+
       <div className="flex justify-evenly">
-        <button className="bg-primary rounded-md p-4">Buy</button>
+        <button className="bg-primary rounded-md p-4" onClick={showModal}>
+          Buy
+        </button>
       </div>
+
+      <dialog id="buyModal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="text-lg font-bold">Hello!</h3>
+          <p className="py-4">Press ESC key or click on ✕ button to close</p>
+          <button className="bg-primary rounded-md p-4" onClick={showModal}>
+            Create Option
+          </button>
+        </div>
+      </dialog>
     </>
   );
 };

@@ -1,8 +1,9 @@
 const headers = [
+  // First header is empty string for the checkbox
   { name: "", key: "" },
-  { name: "Name", key: "name" },
-  { name: "Job", key: "job" },
-  { name: "Favorite Color", key: "favoriteColor" },
+  { name: "Token", key: "token" },
+  { name: "Quantity", key: "quantity" },
+  { name: "Expiration", key: "expiry" },
 ];
 
 const DUMMY_DATA = [
@@ -70,7 +71,7 @@ const Table = () => {
                 </div>
               </td>
               <td>
-                Company Name
+                Company's
                 <br />
                 <span className="badge badge-ghost badge-sm">{item.job}</span>
               </td>
@@ -78,16 +79,6 @@ const Table = () => {
             </tr>
           ))}
         </tbody>
-
-        <tfoot>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
-            <th></th>
-          </tr>
-        </tfoot>
       </table>
     </div>
   );
