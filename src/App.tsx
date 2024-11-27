@@ -80,6 +80,7 @@ const App = () => {
           role="tab"
           className="tab"
           aria-label="Calls"
+          defaultChecked
         />
         <div role="tabpanel" className="tab-content p-10">
           <Table
@@ -88,14 +89,14 @@ const App = () => {
             handleRadioChange={handleRadioChange}
           />
         </div>
-        <input
+        {/* <input
           type="radio"
           name="optionTabs"
           role="tab"
           className="tab"
           aria-label="Puts"
           defaultChecked
-        />
+        /> */}
         <div role="tabpanel" className="tab-content p-10"></div>
       </div>
 

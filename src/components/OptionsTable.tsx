@@ -47,7 +47,7 @@ const Table: React.FC<TableProps> = ({ columns, data, handleRadioChange }) => {
                   <div>
                     {column.key === "expiry"
                       ? formatTimestamp(item[column.key])
-                      : column.key === "name"
+                      : column.key === "tokenName"
                       ? item[column.key].toUpperCase()
                       : item[column.key]}
                   </div>
