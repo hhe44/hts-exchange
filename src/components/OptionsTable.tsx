@@ -1,0 +1,78 @@
+import { useState } from "react";
+
+const formatTimestamp = (utcTimestamp: number): string => {
+  // Convert seconds to milliseconds
+  const date = new Date(utcTimestamp * 1000);
+  const options: Intl.DateTimeFormatOptions = {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    month: "2-digit",
+    day: "2-digit",
+    year: "2-digit",
+  };
+  return date.toLocaleString(undefined, options);
+};
+
+interface TableProps {
+  columns: { name: string; key: string }[];
+  data: { [key: string]: any }[];
+}
+
+const Table: React.FC<TableProps> = ({ columns, data }) => {
+  const [selectedRow, setSelectedRow] = useState<HTMLTableRowElement | null>(
+    null
+  );
+
+  const handleRadioChange = (): void => {
+    const selectedRadio = document.querySelectorAll(
+      'input[type="radio"]:checked'
+    )[1];
+    const row = selectedRadio.closest("tr");
+    setSelectedRow(row);
+    console.log(selectedRow);
+  };
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="table">
+        <thead>
+          <tr>
+            {columns.map((column, index) => (
+              <th key={index}>{column.name}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item, rowIndex) => (
+            <tr key={rowIndex}>
+              <th>
+                <label>
+                  <input
+                    type="radio"
+                    name="radio-1"
+                    className="radio radio-secondary"
+                    onChange={handleRadioChange}
+                  />
+                </label>
+              </th>
+              {columns.slice(1).map((column, colIndex) => (
+                <td key={colIndex}>
+                  <div>
+                    {column.key === "expiry"
+                      ? formatTimestamp(item[column.key])
+                      : column.key === "name"
+                      ? item[column.key].toUpperCase()
+                      : item[column.key]}
+                  </div>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default Table;
