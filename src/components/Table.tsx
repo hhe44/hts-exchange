@@ -1,39 +1,71 @@
+import { useState } from "react";
+
 const headers = [
   // First header is empty string for the checkbox
   { name: "", key: "" },
-  { name: "Token", key: "token" },
+  { name: "Token Id", key: "tokenId" },
+  { name: "Token Name", key: "tokenName" },
   { name: "Quantity", key: "quantity" },
+  { name: "Premium", key: "premium" },
+  { name: "Strike Price", key: "strikePrice" },
   { name: "Expiration", key: "expiry" },
+  { name: "Seller", key: "seller" },
 ];
 
 const DUMMY_DATA = [
   {
-    id: 1,
-    name: "Hart Hagerty",
-    job: "Desktop Support Technician",
-    favoriteColor: "Purple",
+    tokenId: "0.123456",
+    tokenName: "sauce",
+    quantity: 100,
+    premium: 20,
+    strikePrice: 200,
+    expiry: 1732720752,
+    seller: "0.123456",
   },
   {
-    id: 2,
-    name: "Brice Swyre",
-    job: "Tax Accountant",
-    favoriteColor: "Red",
+    tokenId: "0.123457",
+    tokenName: "pack",
+    quantity: 100,
+    premium: 20,
+    strikePrice: 200,
+    expiry: 1732720752,
+    seller: "0.123456",
   },
   {
-    id: 3,
-    name: "Marjy Ferencz",
-    job: "Office Assistant I",
-    favoriteColor: "Crimson",
+    tokenId: "0.123458",
+    tokenName: "karate",
+    quantity: 100,
+    premium: 20,
+    strikePrice: 200,
+    expiry: 1732720752,
+    seller: "0.123456",
   },
   {
-    id: 4,
-    name: "Yancy Tear",
-    job: "Community Outreach Specialist",
-    favoriteColor: "Indigo",
+    tokenId: "0.123459",
+    tokenName: "grelf",
+    quantity: 100,
+    premium: 20,
+    strikePrice: 200,
+    expiry: 1732720752,
+    seller: "0.123456",
   },
 ];
 
 const rows = DUMMY_DATA;
+
+const formatTimestamp = (utcTimestamp: number): string => {
+  // Convert seconds to milliseconds
+  const date = new Date(utcTimestamp * 1000);
+  const options: Intl.DateTimeFormatOptions = {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    month: "2-digit",
+    day: "2-digit",
+    year: "2-digit",
+  };
+  return date.toLocaleString(undefined, options);
+};
 
 const Table = () => {
   return (
@@ -48,34 +80,37 @@ const Table = () => {
         </thead>
         <tbody>
           {rows.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.tokenId}>
               <th>
                 <label>
-                  <input type="checkbox" className="checkbox" />
+                  <input
+                    type="radio"
+                    name="radio-1"
+                    className="radio radio-secondary"
+                  />
                 </label>
               </th>
               <td>
-                <div className="flex items-center gap-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle h-12 w-12">
-                      <img
-                        src={`https://img.daisyui.com/images/profile/demo/${item.id}@94.webp`}
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">{item.name}</div>
-                    <div className="text-sm opacity-50">Country</div>
-                  </div>
-                </div>
+                <div>{item.tokenId}</div>
               </td>
               <td>
-                Company's
-                <br />
-                <span className="badge badge-ghost badge-sm">{item.job}</span>
+                <div>{item.tokenName.toUpperCase()}</div>
               </td>
-              <td>{item.favoriteColor}</td>
+              <td>
+                <div>{item.quantity}</div>
+              </td>
+              <td>
+                <div>{item.premium}</div>
+              </td>
+              <td>
+                <div>{item.strikePrice}</div>
+              </td>
+              <td>
+                <div>{formatTimestamp(item.expiry)}</div>
+              </td>
+              <td>
+                <div>{item.seller}</div>
+              </td>
             </tr>
           ))}
         </tbody>

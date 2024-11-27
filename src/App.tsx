@@ -16,7 +16,7 @@ const App = () => {
       <div role="tablist" className="tabs tabs-bordered">
         <input
           type="radio"
-          name="my_tabs_1"
+          name="optionTabs"
           role="tab"
           className="tab"
           aria-label="Calls"
@@ -27,7 +27,7 @@ const App = () => {
 
         <input
           type="radio"
-          name="my_tabs_1"
+          name="optionTabs"
           role="tab"
           className="tab"
           aria-label="Puts"
