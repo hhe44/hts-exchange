@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Table from "./components/Table";
+import Table from "./components/OptionsTable";
 
 const App = () => {
   const cols = [
