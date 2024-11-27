@@ -1,4 +1,8 @@
-import { useState } from "react";
+interface TableProps {
+  columns: { name: string; key: string }[];
+  data: { [key: string]: any }[];
+  handleRadioChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 const formatTimestamp = (utcTimestamp: number): string => {
   // Convert seconds to milliseconds
@@ -14,25 +18,7 @@ const formatTimestamp = (utcTimestamp: number): string => {
   return date.toLocaleString(undefined, options);
 };
 
-interface TableProps {
-  columns: { name: string; key: string }[];
-  data: { [key: string]: any }[];
-}
-
-const Table: React.FC<TableProps> = ({ columns, data }) => {
-  const [selectedRow, setSelectedRow] = useState<HTMLTableRowElement | null>(
-    null
-  );
-
-  const handleRadioChange = (): void => {
-    const selectedRadio = document.querySelectorAll(
-      'input[type="radio"]:checked'
-    )[1];
-    const row = selectedRadio.closest("tr");
-    setSelectedRow(row);
-    console.log(selectedRow);
-  };
-
+const Table: React.FC<TableProps> = ({ columns, data, handleRadioChange }) => {
   return (
     <div className="overflow-x-auto">
       <table className="table">

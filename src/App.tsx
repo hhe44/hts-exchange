@@ -56,18 +56,12 @@ const App = () => {
 
   const data = DUMMY_DATA;
 
-  const formatTimestamp = (utcTimestamp: number): string => {
-    // Convert seconds to milliseconds
-    const date = new Date(utcTimestamp * 1000);
-    const options: Intl.DateTimeFormatOptions = {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      month: "2-digit",
-      day: "2-digit",
-      year: "2-digit",
-    };
-    return date.toLocaleString(undefined, options);
+  const handleRadioChange = (): void => {
+    const selectedRadio = document.querySelectorAll(
+      'input[type="radio"]:checked'
+    )[1];
+    const row = selectedRadio.closest("tr");
+    console.log(row);
   };
 
   const showModal = () => {
@@ -88,7 +82,11 @@ const App = () => {
           aria-label="Calls"
         />
         <div role="tabpanel" className="tab-content p-10">
-          <Table columns={cols} data={data} />
+          <Table
+            columns={cols}
+            data={data}
+            handleRadioChange={handleRadioChange}
+          />
         </div>
         <input
           type="radio"
