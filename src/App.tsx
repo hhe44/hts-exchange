@@ -1,8 +1,13 @@
+import React, { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Table from "./components/OptionsTable";
 
 const App = () => {
+  const [buyModalData, setBuyModalData] = useState<{
+    [key: string]: any;
+  } | null>(null);
+
   const cols = [
     // First header is empty string for the checkbox
     { name: "", key: "" },
@@ -61,9 +66,26 @@ const App = () => {
       'input[type="radio"]:checked'
     )[1];
     const row = selectedRadio.closest("tr");
-    console.log(row);
+    if (row) {
+      const data = row.querySelectorAll("td");
+      const keys = [
+        "tokenId",
+        "tokenName",
+        "quantity",
+        "premium",
+        "strikePrice",
+        "expiry",
+        "seller",
+      ];
+      const buyModalData: { [key: string]: any } = {};
+      data.forEach((tData, index) => {
+        const key = keys[index];
+        const value = tData.textContent;
+        buyModalData[key] = value;
+      });
+      setBuyModalData(buyModalData);
+    }
   };
-
   const showModal = () => {
     const buyModal: any = document.getElementById("buyModal");
     if (buyModal) {
@@ -101,7 +123,7 @@ const App = () => {
       </div>
 
       <div className="flex justify-evenly">
-        <button className="bg-primary rounded-md p-4" onClick={showModal}>
+        <button className="bg-primary rounded-md p-3" onClick={showModal}>
           Buy
         </button>
       </div>
@@ -113,10 +135,18 @@ const App = () => {
               ✕
             </button>
           </form>
-          <h3 className="text-lg font-bold">Hello!</h3>
-          <p className="py-4">Press ESC key or click on ✕ button to close</p>
-          <button className="bg-primary rounded-md p-4" onClick={showModal}>
-            Create Option
+          <h3 className="text-lg font-bold">Option Details</h3>
+          <p className="text-sm py-2">Token Id: {buyModalData?.tokenId}</p>
+          <p className="text-sm py-2">Token Name: {buyModalData?.tokenName}</p>
+          <p className="text-sm py-2">Quantity: {buyModalData?.quantity}</p>
+          <p className="text-sm py-2">Premium: {buyModalData?.premium}</p>
+          <p className="text-sm py-2">
+            Strike Price: {buyModalData?.strikePrice}
+          </p>
+          <p className="text-sm py-2">Expiration: {buyModalData?.expiry}</p>
+          <p className="text-sm py-2">Expiration: {buyModalData?.seller}</p>
+          <button className="bg-primary rounded-md p-2" onClick={showModal}>
+            Confirm Purchase
           </button>
         </div>
       </dialog>
