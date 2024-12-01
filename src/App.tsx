@@ -92,10 +92,18 @@ const App = () => {
       buyModal.showModal();
     }
   };
+
+  const showCreateModal = () => {
+    const createModal: any = document.getElementById("createModal");
+    if (createModal) {
+      createModal.showModal();
+    }
+  };
+
   return (
     <>
       <Navbar />
-      <div role="tablist" className="tabs tabs-bordered">
+      <div role="tablist" className="tabs tabs-bordered pt-2 pl-4">
         <input
           type="radio"
           name="optionTabs"
@@ -111,20 +119,22 @@ const App = () => {
             handleRadioChange={handleRadioChange}
           />
         </div>
-        {/* <input
+        <input
           type="radio"
           name="optionTabs"
           role="tab"
           className="tab"
           aria-label="Puts"
-          defaultChecked
-        /> */}
+        />
         <div role="tabpanel" className="tab-content p-10"></div>
       </div>
 
-      <div className="flex justify-evenly">
+      <div className="flex justify-center gap-x-4">
         <button className="bg-primary rounded-md p-3" onClick={showModal}>
           Buy
+        </button>
+        <button className="bg-primary rounded-md p-3" onClick={showCreateModal}>
+          Create Option
         </button>
       </div>
 
@@ -147,6 +157,19 @@ const App = () => {
           <p className="text-sm py-2">Expiration: {buyModalData?.seller}</p>
           <button className="bg-primary rounded-md p-2" onClick={showModal}>
             Confirm Purchase
+          </button>
+        </div>
+      </dialog>
+
+      <dialog id="createModal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <button className="bg-primary rounded-md p-2" onClick={showModal}>
+            Create Option
           </button>
         </div>
       </dialog>
