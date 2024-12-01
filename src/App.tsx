@@ -193,12 +193,7 @@ const App = () => {
               Expiry
               <input type="text" className="grow" placeholder="1000" />
             </label>
-            <button
-              className="bg-primary rounded-md p-2"
-              onClick={showBuyModal}
-            >
-              Create
-            </button>
+            <button className="bg-primary rounded-md p-2">Create</button>
           </div>
         </div>
       </dialog>
