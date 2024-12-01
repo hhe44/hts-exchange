@@ -86,7 +86,7 @@ const App = () => {
       setBuyModalData(buyModalData);
     }
   };
-  const showModal = () => {
+  const showBuyModal = () => {
     const buyModal: any = document.getElementById("buyModal");
     if (buyModal) {
       buyModal.showModal();
@@ -130,7 +130,7 @@ const App = () => {
       </div>
 
       <div className="flex justify-center gap-x-4">
-        <button className="bg-primary rounded-md p-3" onClick={showModal}>
+        <button className="bg-primary rounded-md p-3" onClick={showBuyModal}>
           Buy
         </button>
         <button className="bg-primary rounded-md p-3" onClick={showCreateModal}>
@@ -155,7 +155,7 @@ const App = () => {
           </p>
           <p className="text-sm py-2">Expiration: {buyModalData?.expiry}</p>
           <p className="text-sm py-2">Expiration: {buyModalData?.seller}</p>
-          <button className="bg-primary rounded-md p-2" onClick={showModal}>
+          <button className="bg-primary rounded-md p-2" onClick={showBuyModal}>
             Confirm Purchase
           </button>
         </div>
@@ -168,9 +168,38 @@ const App = () => {
               ✕
             </button>
           </form>
-          <button className="bg-primary rounded-md p-2" onClick={showModal}>
-            Create Option
-          </button>
+          <div className="flex flex-col gap-y-2">
+            <label className="input input-bordered flex items-center gap-2">
+              Token
+              <input type="text" className="grow" placeholder="0.0.123456" />
+            </label>
+            <label className="input input-bordered flex items-center gap-2">
+              Amount
+              <input type="text" className="grow" placeholder="1000" />
+            </label>
+            <label className="input input-bordered flex items-center gap-2">
+              Amount
+              <input type="text" className="grow" placeholder="1000" />
+            </label>
+            <label className="input input-bordered flex items-center gap-2">
+              Premium
+              <input type="text" className="grow" placeholder="1000" />
+            </label>
+            <label className="input input-bordered flex items-center gap-2">
+              Strike Price
+              <input type="text" className="grow" placeholder="1000" />
+            </label>
+            <label className="input input-bordered flex items-center gap-2">
+              Expiry
+              <input type="text" className="grow" placeholder="1000" />
+            </label>
+            <button
+              className="bg-primary rounded-md p-2"
+              onClick={showBuyModal}
+            >
+              Create
+            </button>
+          </div>
         </div>
       </dialog>
     </>
